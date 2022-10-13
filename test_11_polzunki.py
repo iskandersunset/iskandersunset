@@ -9,9 +9,9 @@ from selenium.webdriver.common.keys import Keys
 
 
 # driver = webdriver.Chrome(executable_path='C:\\_teach\\Silenium\\chromedriver.exe')
-s = Service('http://automationpractice.com/index.php?id_category=3&controller=category')
+s = Service('C:/_teach/Silenium/chromedriver.exe')
 driver = webdriver.Chrome(service=s)
-base_url = 'https://demoqa.com/date-picker'
+base_url = 'http://automationpractice.com/index.php?id_category=3&controller=category'
 # login_standard_user = "standard_user"
 # login_password_user = "secret_sauce"
 driver.get(base_url)
