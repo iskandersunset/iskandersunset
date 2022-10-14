@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 # driver = webdriver.Chrome(executable_path='C:\\_teach\\Silenium\\chromedriver.exe')
-s = Service('C:/_teach/Silenium/chromedriver.exe')
+s = Service('/chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 base_url = 'https://demoqa.com/date-picker'
 # login_standard_user = "standard_user"
