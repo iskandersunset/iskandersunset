@@ -1,3 +1,6 @@
+from Phyton.base_animals import Animals
+
+
 class Birds(Animals):
     """Подкласс птицы"""
 
