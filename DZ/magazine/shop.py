@@ -1,4 +1,4 @@
-from Phyton.base_animals import Animals
+from DZ.magazine.product_card import Product
 
 
 class Birds(Animals):
