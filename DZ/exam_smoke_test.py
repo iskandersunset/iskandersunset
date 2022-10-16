@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 # driver = webdriver.Chrome(executable_path='C:\\_teach\\Silenium\\chromedriver.exe')
-s = Service('C:/_teach/Silenium/chromedriver.exe')
+s = Service('C:/Users/iskan/PycharmProjects/Selenium/chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 base_url = 'https://www.saucedemo.com/'
 login_standard_user = "standard_user"
@@ -15,7 +15,7 @@ login_password_user = "secret_sauce"
 driver.get(base_url)
 # driver.maximize_window()
 
-"""1. Авторизоваться на сайте"""
+# 1. Авторизоваться на сайте
 user_name = driver.find_element(By.XPATH, "//input[@id='user-name']")
 user_name.send_keys(login_standard_user)
 print("Input login")
@@ -30,7 +30,7 @@ user_pass.send_keys(Keys.RETURN)
 print('RETURN\n', '--' * 20)
 time.sleep(1)
 
-"""2.Выбрать 2 товара Sauce Labs Bolt T-Shirt и Sauce Labs Fleece Jacket"""
+# 2.Выбрать 2 товара Sauce Labs Bolt T-Shirt и Sauce Labs Fleece Jacket
 product_1 = driver.find_element(By.XPATH, "//a[@id='item_1_title_link']")
 value_product_1 = product_1.text
 print(value_product_1)

@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 # driver = webdriver.Chrome(executable_path='C:\\_teach\\Silenium\\chromedriver.exe')
-s = Service('C:/_teach/Silenium/chromedriver.exe')
+s = Service('C:/Users/iskan/PycharmProjects/Selenium/chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 base_url = 'https://www.saucedemo.com/'
 login_standard_user = "standard_user"
@@ -89,7 +89,7 @@ over_product_1 = driver.find_element(By.XPATH, "//a[@id='item_4_title_link']")
 value_over_product_1 = over_product_1.text
 print(value_over_product_1)
 assert value_product_1 == value_over_product_1
-print('Инфо о товаре 1 гуд2')
+print('Инфо о товаре 1 гуд')
 
 price_over_product_1 = driver.find_element(By.XPATH, "//*[@id='checkout_summary_container']/div/div[1]/div[3]/div[2]/div[2]/div")
 value_price_over_product_1 = price_over_product_1.text
