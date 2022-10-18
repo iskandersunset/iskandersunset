@@ -1,3 +1,4 @@
+"""Тестирование покупки 1 еденицы товара при случайном выборе пользователя"""
 import time
 
 from selenium import webdriver
@@ -85,12 +86,56 @@ time.sleep(3)
 
 shopping_cart_badge = driver.find_element(By.CLASS_NAME, "shopping_cart_badge")
 assert int(shopping_cart_badge.text) == 1
-print('Товар добавлен в корзину')
+print('Товар добавлен в корзину 1 штук')
 time.sleep(3)
 
 # Кликаем по иконке корзина
 driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
-print('Кликаем по кнопке Add to cart\n', '---' * 20)
+print('Кликаем по иконкн корзина\n', '---' * 20)
 time.sleep(3)
 
+# Сверяем данные в корзине с исходными
+name_product_cart = driver.find_element(By.CLASS_NAME, "inventory_item_name").text
+price_cart = float(driver.find_elements(By.CLASS_NAME, "inventory_item_price")[0].text[1:])
 
+assert name_product_cart == name_product_inventory
+print('Имя товара совпало с исходным:', name_product_cart)
+
+assert price_cart == price_product_inventory
+print('Цена товара совпала с исходным:', price_cart)
+
+# Кликаем по иконке CHECKOUT
+driver.find_element(By.CLASS_NAME, "checkout_button").click()
+print('Кликаем по кнопке CHECKOUT\n', '---' * 20)
+time.sleep(3)
+
+# Вводим данные
+first_name = driver.find_element(By.ID, "first-name")
+last_name = driver.find_element(By.ID, "last-name")
+zip_code = driver.find_element(By.ID, "postal-code")
+first_name.send_keys('Петров')
+last_name.send_keys('Петр')
+zip_code.send_keys('454000')
+print('Ввели данные покупателя')
+button_continue = driver.find_element(By.CLASS_NAME, "btn_action")
+button_continue.click()
+print('Кликаем по кнопке CONTINUE\n', '--' * 20)
+
+# Сверяем данные в чеке с данными в магазине
+name_products_check = driver.find_elements(By.CLASS_NAME, "inventory_item_name")[0].text
+price_check = float(driver.find_elements(By.CLASS_NAME, "inventory_item_price")[0].text[1:])
+price_final = float(driver.find_elements(By.CLASS_NAME, "summary_subtotal_label")[0].text.replace('Item total: $', ''))
+
+assert name_products_check == name_product_inventory
+print('Наименование товара совпадает', name_products_check)
+assert price_check == price_details == price_final
+print('Цена товара актуальна', price_final, '\n', '--' * 20)
+
+button_finish = driver.find_element(By.CLASS_NAME, "cart_button")
+button_finish.click()
+print('Кликаем по кнопке FINISH\n', '--' * 20)
+
+# Проверка финишного сообщения о покупке
+finish = driver.find_element(By.CLASS_NAME, "complete-header").text
+assert finish == 'THANK YOU FOR YOUR ORDER'
+print('Тест пройден')
